@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Care Nova — Login</title>
+    <link rel="stylesheet" href="index_ka_style.css">
+</head>
+<body>
+
+    <!-- Logo / branding bar -->
+    <header class="logo">
+        <div class="brand">
+            <img src="care-nova-logo.png" alt="Care Nova">
+            <span class="pulse-dot" aria-hidden="true"></span>
+        </div>
+        <button class="sign_up" type="button" id="signUpBtn">Sign Up</button>
+    </header>
+
+    <!-- Accent bar — nav links will go back in here later -->
+    <nav class="bar" aria-label="Main navigation"></nav>
+
+    <!-- Login heading -->
+    <div class="page_heading">
+        <h1>Log in</h1>
+        <p class="page_subheading">Choose how you'd like to sign in</p>
+    </div>
+
+    <!-- Login portal -->
+    <main class="login_area">
+        <div class="login_portal">
+
+            <button class="boxes" type="button" id="patientLoginBtn" aria-label="Continue as Patient">
+                <span class="icon_ring">
+                    <!-- heartbeat / patient icon -->
+                    <svg viewBox="0 0 64 64" width="54" height="54" fill="none" aria-hidden="true">
+                        <path d="M32 52C32 52 8 38.5 8 22.8C8 14.6 14.7 8 22.9 8C27 8 30.8 9.9 32 13.4C33.2 9.9 37 8 41.1 8C49.3 8 56 14.6 56 22.8C56 38.5 32 52 32 52Z" stroke="#012145" stroke-width="3" stroke-linejoin="round"/>
+                        <path d="M14 27H22L26 18L32 36L36 27H50" stroke="#14B8A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <p class="box_contents">Patient</p>
+            </button>
+
+            <button class="boxes" type="button" id="doctorLoginBtn" aria-label="Continue as Doctor">
+                <span class="icon_ring">
+                    <!-- stethoscope / doctor icon -->
+                    <svg viewBox="0 0 64 64" width="54" height="54" fill="none" aria-hidden="true">
+                        <path d="M18 8V26C18 32.6 23.4 38 30 38C36.6 38 42 32.6 42 26V8" stroke="#012145" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="18" y1="8" x2="18" y2="8" stroke="#012145" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="22" cy="8" r="4" stroke="#012145" stroke-width="3"/>
+                        <circle cx="38" cy="8" r="4" stroke="#012145" stroke-width="3"/>
+                        <path d="M30 38V46C30 51.5 34.5 56 40 56C45.5 56 50 51.5 50 46V42" stroke="#012145" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="50" cy="40" r="5" stroke="#14B8A6" stroke-width="3"/>
+                    </svg>
+                </span>
+                <p class="box_contents">Doctor</p>
+            </button>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

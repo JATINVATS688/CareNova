@@ -1,0 +1,769 @@
+/* =========================================================
+   Care Nova — Doctor Portal
+   Shares the login page's palette and type system so this
+   reads as the same product:
+     --navy   #012145   --sky    #2FBAFB   --cream #F9F3E6
+     --ink    #033C59   --vital  #14B8A6   (the "signature" teal)
+   Display: Poppins  |  Body/UI: Inter
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+    --navy: #012145;
+    --navy-soft: #0C416F;
+    --sky: #2FBAFB;
+    --sky-deep: rgb(47, 186, 251);
+    --ink: rgb(3, 60, 89);
+    --cream: rgb(249, 243, 230);
+    --vital: #14B8A6;
+    --vital-tint: rgba(20, 184, 166, 0.12);
+
+    --warn: #B45309;
+    --warn-bg: #FEF3E2;
+    --warn-border: #F5D9A8;
+
+    --line: #E7EEF4;
+
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --shadow-card: 0 6px 20px rgba(1, 33, 69, 0.08);
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    background: linear-gradient(180deg, rgb(223, 244, 255) 0%, rgb(238, 248, 255) 100%);
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+}
+
+button{
+    font: inherit;
+}
+
+/* ---------- Top bar ---------- */
+
+.dp_topbar{
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 0.85rem 2rem;
+    flex-wrap: wrap;
+}
+
+.dp_brand{
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.dp_brand:focus-visible{
+    outline: 2px solid var(--vital);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+.dp_brand img{
+    height: 40px;
+    width: auto;
+    display: block;
+}
+
+.dp_portal_badge{
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+}
+
+.dp_summary_pill{
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    background: var(--vital-tint);
+    color: #99F6E4;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+}
+
+.dp_pulse{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--vital);
+    box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.7);
+    animation: dp_pulse 2s ease-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes dp_pulse{
+    0%   { box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.6); }
+    70%  { box-shadow: 0 0 0 8px rgba(20, 184, 166, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(20, 184, 166, 0); }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .dp_pulse{ animation: none; }
+}
+
+.dp_profile{
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.dp_profile_text{
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.dp_profile_name{
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.dp_profile_role{
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.78rem;
+}
+
+.dp_avatar{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(155deg, var(--sky-deep), var(--navy-soft));
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+.dp_logout{
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.15s ease-out, color 0.15s ease-out;
+}
+
+.dp_logout:hover{
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+}
+
+.dp_logout:focus-visible{
+    outline: 2px solid var(--vital);
+    outline-offset: 2px;
+}
+
+/* ---------- Secondary navbar ---------- */
+/* Same fading gradient idea as the login page's accent band —
+   ties the portal pages back to the login page visually. */
+
+.dp_navbar{
+    background: linear-gradient(
+        180deg,
+        var(--navy) 0%,
+        var(--sky-deep) 35%,
+        rgba(47, 186, 251, 0) 100%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.7rem 2rem 1.6rem;
+    flex-wrap: wrap;
+}
+
+.dp_back_btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease-out;
+}
+
+.dp_back_btn:hover{
+    background: rgba(255, 255, 255, 0.28);
+}
+
+.dp_back_btn:focus-visible{
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.dp_nav_links{
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.dp_nav_link{
+    background: rgba(255, 255, 255, 0.35);
+    border: none;
+    color: var(--navy);
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.5rem 1.1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.15s ease-out;
+}
+
+.dp_nav_link:hover{
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.dp_nav_link:focus-visible{
+    outline: 2px solid var(--navy);
+    outline-offset: 1px;
+}
+
+/* ---------- Layout ---------- */
+
+.dp_layout{
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.5rem 2rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ---------- Sidebar ---------- */
+
+.dp_sidebar{
+    width: 300px;
+    flex-shrink: 0;
+    background: #fff;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 1.25rem;
+}
+
+.dp_search{
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #F3F7FA;
+    border-radius: var(--radius-md);
+    padding: 0.65rem 0.9rem;
+    color: #7C93A3;
+}
+
+.dp_search input{
+    border: none;
+    background: transparent;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: var(--ink);
+    width: 100%;
+}
+
+.dp_patient_count{
+    color: #7C93A3;
+    font-size: 0.8rem;
+    margin: 1rem 0 0.5rem 0.2rem;
+}
+
+.dp_patient_list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.dp_patient_item{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: transparent;
+    border: none;
+    border-left: 3px solid transparent;
+    border-radius: 8px;
+    padding: 0.6rem 0.6rem;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.15s ease-out;
+}
+
+.dp_patient_item:hover{
+    background: #F3F7FA;
+}
+
+.dp_patient_item.is_active{
+    background: var(--vital-tint);
+    border-left-color: var(--vital);
+}
+
+.dp_patient_item:focus-visible{
+    outline: 2px solid var(--vital);
+    outline-offset: -2px;
+}
+
+.dp_patient_avatar{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(155deg, var(--sky-deep), var(--navy));
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.78rem;
+    flex-shrink: 0;
+}
+
+.dp_patient_info{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+.dp_patient_name{
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--navy);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dp_patient_mrn{
+    font-size: 0.75rem;
+    color: #8CA1AE;
+}
+
+.dp_patient_badge{
+    background: var(--navy);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.35rem;
+    flex-shrink: 0;
+}
+
+/* ---------- Main panel ---------- */
+
+.dp_main{
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.dp_patient_card,
+.dp_prescriptions{
+    background: #fff;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 1.75rem;
+}
+
+.dp_patient_card_top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.dp_patient_headline{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.dp_patient_avatar_lg{
+    width: 56px;
+    height: 56px;
+    font-size: 1rem;
+}
+
+.dp_patient_headline h1{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: var(--navy);
+    margin: 0;
+}
+
+.dp_mrn{
+    color: #8CA1AE;
+    font-size: 0.85rem;
+    margin: 0.2rem 0 0;
+}
+
+.dp_primary_btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(155deg, var(--navy-soft), var(--navy));
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 0.7rem 1.2rem;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+
+.dp_primary_btn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(1, 33, 69, 0.3);
+}
+
+.dp_primary_btn:focus-visible{
+    outline: 2px solid var(--vital);
+    outline-offset: 2px;
+}
+
+.dp_info_grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin: 1.5rem 0 1.25rem;
+    padding: 1.25rem 0;
+}
+
+.dp_info_label{
+    display: block;
+    color: #8CA1AE;
+    font-size: 0.78rem;
+    margin-bottom: 0.3rem;
+}
+
+.dp_info_value{
+    display: block;
+    color: var(--navy);
+    font-weight: 600;
+    font-size: 0.92rem;
+}
+
+.dp_allergy_alert{
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-border);
+    color: var(--warn);
+    border-radius: var(--radius-md);
+    padding: 0.8rem 1rem;
+    font-size: 0.88rem;
+}
+
+.dp_allergy_alert svg{
+    flex-shrink: 0;
+}
+
+/* ---------- Prescriptions ---------- */
+
+.dp_prescriptions_header{
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin-bottom: 1.25rem;
+}
+
+.dp_prescriptions_header h2{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--navy);
+    margin: 0;
+}
+
+.dp_prescriptions_meta{
+    color: #8CA1AE;
+    font-size: 0.85rem;
+}
+
+.dp_rx_card{
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.4rem;
+    background: linear-gradient(160deg, #FFFFFF 0%, #FBFDFF 100%);
+}
+
+.dp_rx_top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.dp_rx_top_left{
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.dp_status_pill{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--vital-tint);
+    color: #0D9488;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+}
+
+.dp_status_pill::before{
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--vital);
+}
+
+.dp_status_pill.is_complete{
+    background: #EEF1F4;
+    color: #64748B;
+}
+
+.dp_status_pill.is_complete::before{
+    background: #94A3B8;
+}
+
+.dp_rx_id{
+    color: #8CA1AE;
+    font-size: 0.82rem;
+}
+
+.dp_edit_btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    border-radius: 8px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease-out;
+}
+
+.dp_edit_btn:hover{
+    background: #F3F7FA;
+}
+
+.dp_edit_btn:focus-visible{
+    outline: 2px solid var(--vital);
+    outline-offset: 2px;
+}
+
+.dp_rx_title{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--navy);
+    margin: 0.9rem 0 0.4rem;
+}
+
+.dp_rx_dates{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #7C93A3;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.dp_rx_arrow{
+    color: #C3D3DC;
+}
+
+.dp_med_pills{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+}
+
+.dp_med_pill{
+    background: #EEF4F8;
+    color: var(--navy);
+    font-size: 0.82rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+}
+
+.dp_med_pill b{
+    font-weight: 700;
+}
+
+.dp_rx_notes{
+    background: #F8FAFC;
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.85rem;
+    color: #64798A;
+    margin: 0;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1000px){
+    .dp_layout{
+        flex-direction: column;
+    }
+
+    .dp_sidebar{
+        width: 100%;
+    }
+
+    .dp_patient_list{
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 0.25rem;
+    }
+
+    .dp_patient_item{
+        flex-shrink: 0;
+        width: 220px;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+    }
+
+    .dp_patient_item.is_active{
+        border-bottom-color: var(--vital);
+    }
+
+    .dp_info_grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px){
+    .dp_navbar{
+        padding: 0.6rem 1.25rem 1.3rem;
+        justify-content: center;
+    }
+
+    .dp_nav_link{
+        padding: 0.45rem 0.85rem;
+        font-size: 0.8rem;
+    }
+
+    .dp_topbar{
+        padding: 0.85rem 1.25rem;
+    }
+
+    .dp_summary_pill{
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .dp_profile_text{
+        display: none;
+    }
+
+    .dp_layout{
+        padding: 1.25rem 1.25rem 2.5rem;
+    }
+
+    .dp_patient_card,
+    .dp_prescriptions{
+        padding: 1.25rem;
+    }
+
+    .dp_patient_card_top{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dp_primary_btn{
+        width: 100%;
+        justify-content: center;
+    }
+
+    .dp_info_grid{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* ---------- Toast (small pop-up confirmation) ---------- */
+/* Same idea as the login page — quick feedback for buttons
+   that aren't wired to a real backend yet. */
+
+.toast{
+    position: fixed;
+    left: 50%;
+    bottom: 2rem;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--navy);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.9rem 1.5rem;
+    border-radius: 999px;
+    box-shadow: 0 10px 30px rgba(1, 33, 69, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+    z-index: 1000;
+}
+
+.toast.is_visible{
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}

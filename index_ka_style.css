@@ -1,0 +1,363 @@
+/* =========================================================
+   Care Nova — Login Page
+   Palette:
+     --navy      #012145  (brand / dark surfaces)
+     --sky       #2FBAFB  (primary accent / interactive)
+     --sky-soft  #C7F3FC  (light accent / dividers)
+     --ice       #DFF4FF  (page background)
+     --cream     #F9F3E6  (card surfaces)
+     --ink       #033C59  (body text on light)
+     --vital     #14B8A6  (signature "vital pulse" accent)
+   Type:
+     Display / headings : "Poppins"
+     Body / UI           : "Inter"
+
+   Signature idea: a "vital pulse" motif — the badge dot on the
+   logo and the glowing ring behind each portal icon share the
+   same teal accent and pulse animation, so the one recurring
+   visual idea is "a sign of life", fitting a care platform.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+    --navy: #012145;
+    --navy-soft: #0C416F;
+    --sky: #2FBAFB;
+    --sky-deep: rgb(47, 186, 251);
+    --sky-soft: rgb(199, 243, 252);
+    --ice: rgb(223, 244, 255);
+    --cream: rgb(249, 243, 230);
+    --ink: rgb(3, 60, 89);
+    --vital: #14B8A6;
+
+    --radius-md: 10px;
+    --radius-lg: 18px;
+    --shadow-card: 0 8px 24px rgba(1, 33, 69, 0.18);
+    --shadow-card-hover: 0 14px 32px rgba(1, 33, 69, 0.28);
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    background: linear-gradient(180deg, rgb(223, 244, 255) 0%, rgb(238, 248, 255) 55%, rgb(247, 251, 255) 100%);
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+}
+
+/* ---------- Logo / branding bar ---------- */
+
+.logo{
+    background: var(--navy);
+    padding: 1rem 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Logo, with the "vital pulse" badge back on as a live-status
+   dot sitting on the logo mark. */
+.brand{
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.brand img{
+    height: clamp(64px, 9vw, 92px);
+    width: auto;
+    display: block;
+}
+
+.pulse-dot{
+    position: absolute;
+    top: 6px;
+    right: 2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #5EEAD4, var(--vital) 70%);
+    border: 2px solid var(--navy);
+    box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.7);
+    animation: pulse 2s ease-out infinite;
+}
+
+@keyframes pulse{
+    0%   { box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.65); }
+    70%  { box-shadow: 0 0 0 10px rgba(20, 184, 166, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(20, 184, 166, 0); }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .pulse-dot{ animation: none; }
+}
+
+.sign_up{
+    background: linear-gradient(155deg, #57CAF3 0%, var(--sky) 100%);
+    color: var(--ink);
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    padding: 0.7rem 1.6rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, background-color 0.15s ease-out;
+    white-space: nowrap;
+}
+
+.sign_up:hover{
+    background: linear-gradient(155deg, #7ED8F8 0%, #57CAF3 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(47, 186, 251, 0.4);
+}
+
+.sign_up:focus-visible{
+    outline: 3px solid var(--vital);
+    outline-offset: 2px;
+}
+
+/* ---------- Nav bar ---------- */
+/* Fades from the navy header into the sky-blue bar so the two
+   don't meet on a hard seam, then the bar itself fades toward
+   the page background instead of handing off to a second flat
+   band of color. */
+
+/* Accent band under the header. No nav content on the login
+   screen right now, so instead of a flat colored block it
+   fades from the header's navy, through sky-blue, down to
+   transparent — reads as an intentional glow rather than an
+   empty bar. When nav links come back, give .bar a fixed
+   min-height and re-add padding so they sit inside it. */
+.bar{
+    height: 90px;
+    background: linear-gradient(
+        180deg,
+        var(--navy) 0%,
+        var(--sky-deep) 30%,
+        rgba(47, 186, 251, 0) 100%
+    );
+}
+
+.butt{
+    padding: 0.5rem 1.1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    color: var(--navy);
+    background: rgba(255, 255, 255, 0.35);
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.butt:hover{
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.butt:focus-visible{
+    outline: 3px solid var(--navy);
+    outline-offset: 1px;
+}
+
+/* ---------- "Log in" heading ---------- */
+
+h1{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    color: var(--navy);
+    font-size: clamp(1.6rem, 4vw, 2.25rem);
+    margin: 0;
+}
+
+.page_heading{
+    text-align: center;
+    padding: 2rem 1rem 0;
+}
+
+.page_subheading{
+    text-align: center;
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin: 0.35rem 0 0;
+}
+
+/* ---------- Login portal ---------- */
+
+.login_area{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.75rem 5% 3rem;
+}
+
+.login_portal{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 2.25rem;
+    width: fit-content;
+    max-width: 100%;
+    padding: 3rem;
+    background: linear-gradient(155deg, #013063 0%, var(--navy) 45%, var(--navy-soft) 100%);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 45px rgba(1, 33, 69, 0.25);
+}
+
+.boxes{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.1rem;
+    padding: 2.75rem 3rem;
+    width: 250px;
+    max-width: 100%;
+    background: linear-gradient(160deg, #FFFDF7 0%, var(--cream) 55%, #F2E7D2 100%);
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    font: inherit;
+    text-align: center;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    box-shadow: var(--shadow-card);
+}
+
+.boxes:hover,
+.boxes:focus-visible{
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.boxes:focus-visible{
+    outline: 3px solid var(--vital);
+    outline-offset: 3px;
+}
+
+.icon_ring{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 98px;
+    height: 98px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(20, 184, 166, 0.16) 0%, rgba(20, 184, 166, 0) 72%);
+    transition: background 0.2s ease-out;
+}
+
+.boxes:hover .icon_ring,
+.boxes:focus-visible .icon_ring{
+    background: radial-gradient(circle, rgba(20, 184, 166, 0.3) 0%, rgba(20, 184, 166, 0) 75%);
+}
+
+.icon_ring svg{
+    width: 74px;
+    height: 74px;
+    transition: filter 0.2s ease-out;
+}
+
+.boxes:hover .icon_ring svg,
+.boxes:focus-visible .icon_ring svg{
+    filter: drop-shadow(0 0 8px rgba(20, 184, 166, 0.75));
+}
+
+.box_contents{
+    color: var(--navy);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+/* ---------- Responsive breakpoints ---------- */
+
+@media (max-width: 900px){
+    .logo{
+        padding: 1rem 5%;
+    }
+}
+
+@media (max-width: 600px){
+    .logo{
+        justify-content: space-between;
+        padding: 0.85rem 5%;
+    }
+
+    .brand img{
+        height: 40px;
+    }
+
+    .sign_up{
+        padding: 0.55rem 1.1rem;
+        font-size: 0.85rem;
+    }
+
+    .bar{
+        gap: 0.35rem;
+    }
+
+    .butt{
+        font-size: 0.8rem;
+        padding: 0.45rem 0.8rem;
+    }
+
+    .login_portal{
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 2rem;
+    }
+
+    .boxes{
+        width: 100%;
+        max-width: 280px;
+        padding: 2.25rem 2rem;
+    }
+
+    .icon_ring{
+        width: 80px;
+        height: 80px;
+    }
+
+    .icon_ring svg{
+        width: 44px;
+        height: 44px;
+    }
+}
+
+/* ---------- Toast (small pop-up confirmation message) ---------- */
+/* Used by script.js to show quick feedback like "Coming soon!"
+   without needing a real backend or a browser alert() popup. */
+
+.toast{
+    position: fixed;
+    left: 50%;
+    bottom: 2rem;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--navy);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.9rem 1.5rem;
+    border-radius: 999px;
+    box-shadow: 0 10px 30px rgba(1, 33, 69, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+    z-index: 1000;
+}
+
+.toast.is_visible{
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
